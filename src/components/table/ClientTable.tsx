@@ -127,7 +127,7 @@ export default function ClientTable() {
           <TableRow>
             <TableHead colSpan={8} className="text-xl font-medium p-5">List of All Clients</TableHead>
           </TableRow>
-          <TableRow className="bg-app-table-header">
+          <TableRow className="bg-app-table-header hover:bg-app-table-header">
             <TableHead className="px-5 text-center" >S. No.</TableHead>
             <TableHead>Location</TableHead>
             <TableHead>Client Name</TableHead>
