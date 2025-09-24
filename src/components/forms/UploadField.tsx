@@ -32,7 +32,7 @@ export default function UploadField() {
         className="w-[100px] h-[100px] rounded-full object-cover"
       />
       <Label htmlFor="file">
-        <Button variant={"formProfileAddLogout"} className="scale-75" asChild>
+        <Button variant={"formProfileAddLogout"} className="scale-75 cursor-pointer" asChild>
           <span>{preview ? "Change Logo" : "Add Logo"}</span>
         </Button>
       </Label>

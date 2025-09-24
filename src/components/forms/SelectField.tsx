@@ -34,7 +34,7 @@ export default function SelectField({
           {required && <span className="text-red-500">*</span>}
         </Label>
         <Select>
-          <SelectTrigger className="w-full">
+          <SelectTrigger className="w-full cursor-pointer">
             <SelectValue placeholder={placeholder} />
           </SelectTrigger>
           <SelectContent>

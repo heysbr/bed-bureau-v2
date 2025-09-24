@@ -19,10 +19,10 @@ const buttonVariants = cva(
         ghost:
           "hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50",
         link: "text-primary underline-offset-4 hover:underline",
-        navBtn: "bg-transparent text-app-heading border-[#DCDFE9] border-2 hover:opacity-75 border-1",
-        navBtnActive: "bg-app-primary hover:bg-app-primary/90 text-white hover:text-white",
-        appBtn: "bg-app-primary hover:bg-app-primary/90 text-white hover:text-white shadow-[0px_5px_10px_0px_#855DD980]",
-        formProfileAddLogout: "bg-app-primary hover:bg-app-primary/90 text-white hover:text-white rounded-full shadow-[0px_4px_15px_0px_#DFE5F0]",
+        navBtn: "bg-transparent text-app-heading border-[#DCDFE9] border-2 hover:opacity-75 border-1 cursor-pointer",
+        navBtnActive: "bg-app-primary hover:bg-app-primary/90 text-white hover:text-white cursor-pointer",
+        appBtn: "bg-app-primary hover:bg-app-primary/90 text-white hover:text-white shadow-[0px_5px_10px_0px_#855DD980] cursor-pointer",
+        formProfileAddLogout: "bg-app-primary hover:bg-app-primary/90 text-white hover:text-white rounded-full shadow-[0px_4px_15px_0px_#DFE5F0] ",
       },
       size: {
         default: "h-9 px-4 py-2 has-[>svg]:px-3",

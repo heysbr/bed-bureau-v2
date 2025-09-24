@@ -22,20 +22,18 @@ export default function Page() {
       <div className="flex justify-between gap-5">
         <SearchField />
 
-        <Dialog>
+        <Dialog >
           <DialogTrigger asChild>
             <Button variant="appBtn">Add Client</Button>
           </DialogTrigger>
-          <DialogContent>
+          <DialogContent className="px-0">
             <DialogHeader>
-              <DialogTitle>
-                <div className="text-2xl font-semibold text-center">
+              <DialogTitle className="text-2xl font-semibold text-center">
                   Add Client
-                </div>
               </DialogTitle>
             </DialogHeader>
 
-            <form className="flex flex-col justify-between px-10 pb-4 space-y-6 rounded-lg">
+            <form className="flex flex-col justify-between px-5 md:px-10 pb-4 space-y-6 rounded-lg">
               {Fields.map((field, index) => (
                 <FormField
                   key={index}
@@ -52,7 +50,7 @@ export default function Page() {
               <div>
                 <span className="font-bold text-sm">Your Public URL :</span>
                 <br />
-              <span className="font-medium text-app-primary">www.bedbureau.com/client/clientname</span>
+              <span className="font-medium text-app-primary cursor-pointer">www.bedbureau.com/client/clientname</span>
               </div>
               <Button variant="appBtn" className="w-full mt-4">
                 Update

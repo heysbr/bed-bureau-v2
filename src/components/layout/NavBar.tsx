@@ -62,6 +62,7 @@ export default function NavBar() {
       </div>
 
       {/* Mobile Menu Button */}
+
       <div className="ml-auto md:hidden">
         <Sheet>
           <SheetTrigger asChild>
