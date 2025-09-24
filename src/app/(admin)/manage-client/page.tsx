@@ -59,7 +59,7 @@ export default function Page() {
           </DialogContent>
         </Dialog>
       </div>
-      <div className=" bg-white rounded-xl shadow-[0px_4px_15px_0px_#DFE5F0]">
+      <div className=" bg-white rounded-xl overflow-hidden shadow-[0px_4px_15px_0px_#DFE5F0]">
         {/* table component will go here */}
         <ClientTable/>
       </div>
