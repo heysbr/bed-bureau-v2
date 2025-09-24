@@ -36,11 +36,13 @@ export default function Page() {
 
   return (
     <div className="relative h-screen bg-app-bg flex md:px-20 md:items-center ">
-      <Image src={Logo} alt="logo" className="absolute top-5 left md:left-25"  />
+      <Image src={Logo} alt="logo" className="absolute top-5 left md:left-25" />
       <div className="flex-1 hidden md:flex flex-col items-center justify-center">
-        <span className="text-4xl m-5">Welcom to 
-        <br />
-        <span className="font-semibold text-[#684ABC]">Bed Bureau</span></span>
+        <span className="text-4xl m-5">
+          Welcom to
+          <br />
+          <span className="font-semibold text-[#684ABC]">Bed Bureau</span>
+        </span>
         <Image src={BgImage} alt="bg-image" />
       </div>
 
@@ -48,10 +50,11 @@ export default function Page() {
         <PageTitle className="md:hidden" />
         <form
           onSubmit={handleSubmit(submit)}
-          // className="flex flex-col gap-y-10 px-12 bg-app-form-bg p-5 shadow-[#DFE5F0] rounded shadow-[0px_4px_15px_0px_#DFE5F0] md:w-md h-3/5"
           className="flex flex-col bg-white md:p-20 border p-5 space-y-2 md:space-y-6 w-full md:w-125 rounded-lg shadow-[0px_4px_15px_0px_#DFE5F0]"
         >
-          <Heading className="hidden md:block text-2xl font-semibold">Login</Heading>
+          <Heading className="hidden md:block text-2xl font-semibold">
+            Login
+          </Heading>
           {LoginFields.map((field, index) => (
             <FormField
               key={index}
