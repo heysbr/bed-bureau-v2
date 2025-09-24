@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import Logo from "@/assets/icons/bed_bureau_icon.svg";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ProfileLogo from "@/assets/icons/profile_photo.svg";
 import { Button } from "../ui/button";
 import LogoutIcon from "@/assets/icons/logout.svg";
@@ -28,6 +28,10 @@ export default function NavBar() {
     { label: "Update Profile", path: "/update-profile" },
     { label: "Reset Password", path: "/reset-password" },
   ];
+  useEffect(() => {
+    setToggleTab(pathname);
+  }, [pathname])
+  
 
   return (
     <div className="flex border h-18 bg-white items-center ">
@@ -42,7 +46,7 @@ export default function NavBar() {
           {navItems.map((item) => (
             <Button
               key={item.path}
-              variant={toggleTab === item.path ? "navBtnActive" : "navBtn"}
+              variant={toggleTab.includes(item.path)? "navBtnActive" : "navBtn"}
               onClick={() => {
                 setToggleTab(item.path);
                 router.push(item.path);
