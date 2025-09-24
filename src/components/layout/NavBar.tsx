@@ -55,7 +55,7 @@ export default function NavBar() {
 
         <div className="flex items-center">
           <Button className="mx-5" variant="navBtn">
-            <Image src={LogoutIcon} alt="Logout" /> Logout
+            <Image src={LogoutIcon} alt="Logout" onClick={() => router.push("/login")}/> Logout
           </Button>
           <div className="h-8 bg-[#DCDFE9] w-[1px]" />
         </div>
@@ -99,7 +99,7 @@ export default function NavBar() {
                 </SheetClose>
               ))}
               <Button className="mt-4" variant="navBtn">
-                <Image src={LogoutIcon} alt="Logout" /> Logout
+                <Image src={LogoutIcon} alt="Logout" onClick={() => router.push("/login")}/> Logout
               </Button>
             </div> 
           </SheetContent>

@@ -17,6 +17,8 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
+import { DropdownMenu } from "@radix-ui/react-dropdown-menu";
+import { DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "../ui/dropdown-menu";
 
 const clients = [
   {
@@ -137,7 +139,17 @@ export default function ClientTable() {
             <TableCell>{client.registeredOn}</TableCell>
             <TableCell>{client.status}</TableCell>
             <TableCell>
-              <EllipsisVertical className="text-[#A0A4A8]" size={16} />
+              {/* <EllipsisVertical className="text-[#A0A4A8]" size={16} /> */}
+              <DropdownMenu>
+        <DropdownMenuTrigger>
+          <EllipsisVertical className="text-[#A0A4A8] cursor-pointer" size={16} />
+        </DropdownMenuTrigger>
+        <DropdownMenuContent className=" py-2 border-0 shadow-[0px_12px_26px_0px_#101E730F]">
+          <DropdownMenuItem className=" ">Edit</DropdownMenuItem>
+          <DropdownMenuItem>Reset Password</DropdownMenuItem>
+          <DropdownMenuItem>Deactivate</DropdownMenuItem>
+        </DropdownMenuContent>
+      </DropdownMenu>
             </TableCell>
           </TableRow>
         ))}

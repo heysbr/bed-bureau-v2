@@ -36,7 +36,7 @@ export default function Page() {
 
   return (
     <div className="relative h-screen bg-app-bg flex md:px-20 md:items-center ">
-      <Image src={Logo} alt="logo" className="absolute top-5 left-5 mg:left-25"  />
+      <Image src={Logo} alt="logo" className="absolute top-5 left md:left-25"  />
       <div className="flex-1 hidden md:flex flex-col items-center justify-center">
         <span className="text-4xl m-5">Welcom to 
         <br />
