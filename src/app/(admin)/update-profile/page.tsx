@@ -13,7 +13,7 @@ export default function page() {
         <PageTitle />
 
         <div className="flex flex-row justify-center">
-          <form className="flex flex-col justify-between bg-white p-20 space-y-6 w-125 rounded-lg shadow-[0px_4px_15px_0px_#DFE5F0]">
+          <form className="flex flex-col bg-white md:p-20 p-5 space-y-2 md:space-y-6 w-full md:w-125 rounded-lg shadow-[0px_4px_15px_0px_#DFE5F0]">
             {Fields.map((field, index) => (
               <FormField
                 key={index}
@@ -28,7 +28,7 @@ export default function page() {
                 //  forgetPassword={field?.forget_password}
               />
             ))}
-            <p className="text-xs text-app-primary">Note: You must complete all the mandatory fields</p>
+            <p className="text-xs m-0 mt-5 text-app-primary">Note: You must complete all the mandatory fields</p>
             <Button variant="appBtn" className="w-full mt-4">
               Update
             </Button>

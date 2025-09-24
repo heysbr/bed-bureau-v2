@@ -2,10 +2,10 @@
 import { usePathname } from "next/navigation";
 
 
-export default function PageTitle() {
+export default function PageTitle({className}: {className?: string}) {
   const pathname = usePathname()
   return (
-    <div className="text-2xl font-semibold">{pathname.split("/")                // break into segments
+    <div className={`text-2xl font-semibold ${className}`}>{pathname.split("/")                // break into segments
     .filter(Boolean)           // remove empty ones
     .map(segment =>
       segment

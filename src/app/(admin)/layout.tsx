@@ -21,7 +21,7 @@ export default function RootLayout({
   return (
     <div className={`${montserrat.variable} h-100 bg-app-bg`}>
       <NavBar />
-      <div className="p-10 px-25">
+      <div className=" p-5 md:py-10 md:px-25">
         {children}
       </div>
     </div>

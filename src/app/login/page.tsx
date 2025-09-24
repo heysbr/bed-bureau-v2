@@ -12,6 +12,7 @@ import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import { generateSchema } from "@/lib/SchemaGenerator";
 import { Button } from "@/components/ui/button";
+import PageTitle from "@/components/layout/PageTittle";
 
 const schema = generateSchema(LoginFields);
 type FormData = z.infer<typeof schema>;
@@ -34,21 +35,23 @@ export default function Page() {
   }
 
   return (
-    <div className="relative h-screen bg-app-bg flex justify-around px-20 items-center ">
-      <Image src={Logo} alt="logo" className="absolute top-5 left-25" />
-      <div className="flex flex-col items-center justify-center">
+    <div className="relative h-screen bg-app-bg flex justify-around md:px-20 md:items-center ">
+      <Image src={Logo} alt="logo" className="absolute top-5 left-25"  />
+      <div className="hidden md:flex flex-col items-center justify-center">
         <span className="text-4xl m-5">Welcom to 
         <br />
         <span className="font-semibold text-[#684ABC]">Bed Bureau</span></span>
         <Image src={BgImage} alt="bg-image" />
       </div>
 
-      <div className="flex h-full items-center justify-center">
+      <div className="flex flex-col w-full px-5 md:h-full gap-y-5 py-20 md:items-center md:justify-center">
+        <PageTitle className="md:hidden" />
         <form
           onSubmit={handleSubmit(submit)}
-          className="flex flex-col gap-y-10 px-12 bg-app-form-bg p-5 shadow-[#DFE5F0] rounded shadow-[0px_4px_15px_0px_#DFE5F0] w-md h-3/5"
+          // className="flex flex-col gap-y-10 px-12 bg-app-form-bg p-5 shadow-[#DFE5F0] rounded shadow-[0px_4px_15px_0px_#DFE5F0] md:w-md h-3/5"
+          className="flex flex-col bg-white md:p-20 p-5 space-y-2 md:space-y-6 w-full md:w-125 rounded-lg shadow-[0px_4px_15px_0px_#DFE5F0]"
         >
-          <Heading>Login</Heading>
+          <Heading className="hidden md:block text-2xl font-semibold">Login</Heading>
           {LoginFields.map((field, index) => (
             <FormField
               key={index}
@@ -62,7 +65,9 @@ export default function Page() {
               forgetPassword={field?.forget_password}
             />
           ))}
-          <Button variant="appBtn" className="">Login</Button>
+          <Button variant="appBtn" className="w-full mt-4">
+            Login
+          </Button>
         </form>
       </div>
     </div>

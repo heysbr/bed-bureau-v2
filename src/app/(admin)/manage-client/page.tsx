@@ -2,6 +2,7 @@
 import FormField from "@/components/forms/FormField";
 import PageTitle from "@/components/layout/PageTittle";
 import SearchField from "@/components/layout/SearchField";
+import ClientTable from "@/components/table/ClientTable";
 import { Button } from "@/components/ui/button";
 
 import {
@@ -18,7 +19,7 @@ export default function Page() {
   return (
     <div className="space-y-6">
       <PageTitle />
-      <div className="flex justify-between ">
+      <div className="flex justify-between gap-5">
         <SearchField />
 
         <Dialog>
@@ -60,8 +61,9 @@ export default function Page() {
           </DialogContent>
         </Dialog>
       </div>
-      <div className="h-100 bg-white rounded-xl shadow-[0px_4px_15px_0px_#DFE5F0]">
+      <div className=" bg-white rounded-xl shadow-[0px_4px_15px_0px_#DFE5F0]">
         {/* table component will go here */}
+        <ClientTable/>
       </div>
     </div>
   );
