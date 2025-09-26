@@ -1,39 +1,27 @@
 "use client";
-
 import { Label } from "@/components/ui/label";
-import { Input } from "../ui/input";
-import { UseFormRegister } from "react-hook-form";
-import Error from "./Error";
+import { Input } from "@/components/ui/input";
+import Error from "@/components/forms/Error";
 
-type TextFieldProps = {
-  label?: string;
-  placeholder?: string;
-  required?: boolean;
-  name?: string;
+type TextFieldProps = React.InputHTMLAttributes<HTMLInputElement> & {
   error?: string;
-  register?: UseFormRegister<Record<string, string>>;
+  label?: string;
 };
 
 export default function TextField({
-  label = "Email address",
-  placeholder = "Enter your email",
+  label,
   required = false,
-  name = "email",
   error,
-  register,
+  ...props
 }: TextFieldProps) {
   return (
-      <div className="">
-        <Label htmlFor="email" className="my-2 text-app-label font-semibold">
-          {label}{required && <span className="text-red-500">*</span>}
-        </Label>
-        <Input
-          type="email"
-          placeholder={placeholder}
-          {...(register ? register(name) : {})}
-          // {...props}
-        />
-        {error && <Error message={error} />}
-      </div>
+    <div className="">
+      <Label htmlFor={props.name} className="my-2 text-app-label font-semibold">
+        {label}
+        {required && <span className="text-red-500">*</span>}
+      </Label>
+      <Input {...props} />
+      {error && <Error message={error} />}
+    </div>
   );
 }

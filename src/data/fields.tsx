@@ -19,6 +19,7 @@ export const fieldComponentMap: {
 } = {
   text: TextField,
   password: Password,
+  // select: FormSelectField,
   select: SelectField,
   email: EmailField,
   checkbox: Checkbox,
@@ -37,7 +38,7 @@ export const LoginFields: FieldConfig[] = [
     type: "password" as FieldType,
     placeholder: "Enter Password",
     label: "Password",
-    forget_password: true,
+    forgetPassword: true,
   },
 ];
 
@@ -92,21 +93,21 @@ export const UpdateProfileFields: FieldConfig[] = [
 
 export const ResetPasswordFields: FieldConfig[] = [
   {
-    name: "current-password",
+    name: "currentPassword",
     type: "password" as FieldType,
     placeholder: "Enter Current Password",
     label: "Current Password",
     required: true,
   },
   {
-    name: "new-password",
+    name: "newPassword",
     type: "password" as FieldType,
     placeholder: "Enter New Password",
     label: "New Password",
     required: true,
   },
   {
-    name: "confirm-password",
+    name: "confirmPassword",
     type: "password" as FieldType,
     placeholder: "Enter Confirm Password",
     label: "Confirm Password",

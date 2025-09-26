@@ -58,14 +58,12 @@ export default function Page() {
           {LoginFields.map((field, index) => (
             <FormField
               key={index}
-              name={field.name}
               type={field.type}
               placeholder={field.placeholder}
               label={field.label}
-              register={register}
+              {...register(field.name)}
               error={errors[field.name]?.message}
-              // link={field?.link}
-              forgetPassword={field?.forget_password}
+              forget={field?.forgetPassword}
             />
           ))}
           <Button variant="appBtn" className="w-full mt-4">

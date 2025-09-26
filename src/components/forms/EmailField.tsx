@@ -1,36 +1,27 @@
 "use client";
 
-import { UseFormRegister } from "react-hook-form";
 import { Input } from "../ui/input";
 import { Label } from "@/components/ui/label";
 import Error from "./Error";
 
-type EmailFieldProps = {
-  label?: string;
-  placeholder?: string;
-  required?: boolean;
-  name?: string;
+type EmailFieldProps = React.InputHTMLAttributes<HTMLInputElement> & {
   error?: string;
-  register?: UseFormRegister<Record<string, string>>;
+  label?: string;
 };
 
 export default function EmailField({
-  label = "Email address",
-  placeholder = "Enter your email",
-  name = "email",
+  label,
+  required = false,
   error,
-  register,
+  ...props
 }: EmailFieldProps) {
-  
   return (
     <div className="">
-      <Label htmlFor="email"  className="my-2 text-app-label font-semibold">{label}</Label>
-      <Input
-        type="email"
-        placeholder={placeholder}
-        {...(register ? register(name) : {})}
-        // {...props}
-      />
+      <Label htmlFor={props.name} className="my-2 text-app-label font-semibold">
+        {label}
+        {required && <span className="text-red-500">*</span>}
+      </Label>
+      <Input {...props} />
       {error && <Error message={error} />}
     </div>
   );
