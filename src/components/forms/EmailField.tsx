@@ -17,7 +17,6 @@ type EmailFieldProps = {
 export default function EmailField({
   label = "Email address",
   placeholder = "Enter your email",
-  required = false,
   name = "email",
   error,
   register,
@@ -29,7 +28,6 @@ export default function EmailField({
       <Input
         type="email"
         placeholder={placeholder}
-        required={required}
         {...(register ? register(name) : {})}
         // {...props}
       />

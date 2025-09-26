@@ -36,11 +36,9 @@ export default function Password({
         <Input
           type={toggle ? "text" : "password"}
           placeholder={placeholder}
-          required={required}
           {...(register ? register(name) : {})}
         />
 
-        {/* Eye icon inside the input */}
         <Image src={EyeIcon} alt="Show Password" className="absolute right-3 top-1/2 -translate-y-1/2 cursor-pointer" onPointerUp={() => setToggle(false)}  onPointerDown={() => setToggle(true)} />
       </div>
       {forgetPassword && <ForgetPassword />}
@@ -48,3 +46,4 @@ export default function Password({
     </div>
   );
 }
+

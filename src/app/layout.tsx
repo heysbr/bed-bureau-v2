@@ -1,4 +1,3 @@
-// app/layout.tsx
 import { Montserrat } from "next/font/google";
 import "./globals.css";
 
@@ -20,7 +19,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={montserrat.variable}>
-      <body className="h-full container">{children}</body>
+      <body className="h-full">{children}</body>
     </html>
   );
 }

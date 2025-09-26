@@ -30,7 +30,6 @@ export default function TextField({
         <Input
           type="email"
           placeholder={placeholder}
-          required={required}
           {...(register ? register(name) : {})}
           // {...props}
         />

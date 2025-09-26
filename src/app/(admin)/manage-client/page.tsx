@@ -26,14 +26,14 @@ export default function Page() {
           <DialogTrigger asChild>
             <Button variant="appBtn">Add Client</Button>
           </DialogTrigger>
-          <DialogContent className="px-0">
+          <DialogContent className="px-0 rounded-lg">
             <DialogHeader>
               <DialogTitle className="text-2xl font-semibold text-center">
                   Add Client
               </DialogTitle>
             </DialogHeader>
 
-            <form className="flex flex-col justify-between px-5 md:px-10 pb-4 space-y-6 rounded-lg">
+            <form className="flex flex-col justify-between px-5 md:px-10 pb-4 space-y-6 ">
               {Fields.map((field, index) => (
                 <FormField
                   key={index}
@@ -59,7 +59,7 @@ export default function Page() {
           </DialogContent>
         </Dialog>
       </div>
-      <div className=" bg-white rounded-xl overflow-hidden shadow-[0px_4px_15px_0px_#DFE5F0]">
+      <div className=" bg-white rounded-lg overflow-hidden shadow-[0px_4px_15px_0px_#DFE5F0]">
         {/* table component will go here */}
         <ClientTable/>
       </div>

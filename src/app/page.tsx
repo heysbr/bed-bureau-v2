@@ -1,10 +1,13 @@
+"use client";
 import { Button } from "@/components/ui/button";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
+  const router = useRouter();
   return (
-    <div className="flex min-h-screen flex-col items-center justify-between p-24 ">
-      <Button variant="outline">Hello World</Button>
-      <div className="space-y-4 p-6">
+    <div className="relative flex min-h-screen flex-col items-center justify-between p-24 ">
+      <Button variant="outline" onClick={() => router.push("/login")} className="absolute top-10 left-10"> Click to see the Project</Button>
+      <div className="space-y-4 p-6 columns-2">
         <div className="bg-app-primary text-white p-4 rounded">
           bg-app-primary
         </div>
