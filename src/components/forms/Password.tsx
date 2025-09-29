@@ -4,29 +4,22 @@ import EyeIcon from "@/assets/icons/toggle_password.svg";
 import { Input } from "../ui/input";
 import { Label } from "../ui/label";
 import ForgetPassword from "./ForgetPassword";
-import { UseFormRegister } from "react-hook-form";
 import { useState } from "react";
 import Error from "./Error";
 import Image from "next/image";
 
-type EmailFieldProps = {
+type EmailFieldProps = React.InputHTMLAttributes<HTMLInputElement> &{
   label?: string;
-  placeholder?: string;
-  required?: boolean;
-  forgetPassword?: boolean;
-  name?: string;
+  forget?: boolean;
   error?: string;
-  register?: UseFormRegister<Record<string, unknown>>;
 };
 
 export default function Password({
   label = "Password",
-  placeholder = "Enter Password",
   required = false,
-  forgetPassword = false,
+  forget = false,
   error,
-  register,
-  name = "password",
+  ...props
 }: EmailFieldProps) {
   const [toggle, setToggle] = useState(false);
   return (
@@ -35,16 +28,39 @@ export default function Password({
       <div className="m-0 p-0 relative">
         <Input
           type={toggle ? "text" : "password"}
-          placeholder={placeholder}
-          required={required}
-          {...(register ? register(name) : {})}
+          {...props}
         />
 
-        {/* Eye icon inside the input */}
         <Image src={EyeIcon} alt="Show Password" className="absolute right-3 top-1/2 -translate-y-1/2 cursor-pointer" onPointerUp={() => setToggle(false)}  onPointerDown={() => setToggle(true)} />
       </div>
-      {forgetPassword && <ForgetPassword />}
+      {forget && <ForgetPassword />}
       {error && <Error message={error} />}
     </div>
   );
 }
+
+
+type TextFieldProps = React.InputHTMLAttributes<HTMLInputElement> & {
+  error?: string;
+  label?: string;
+};
+
+export  function TextField({
+  label,
+  required = false,
+  error,
+  ...props
+}: TextFieldProps) {
+  return (
+    <div className="">
+      <Label htmlFor={props.name} className="my-2 text-app-label font-semibold">
+        {label}
+        {required && <span className="text-red-500">*</span>}
+      </Label>
+      <Input {...props} />
+      {error && <Error message={error} />}
+    </div>
+  );
+}
+
+

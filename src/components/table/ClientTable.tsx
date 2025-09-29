@@ -1,179 +1,101 @@
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableFooter,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
+"use client";
+import {Table, TableBody, TableCell, TableHead, TableHeader, TableRow, } from "@/components/ui/table";
 import { EllipsisVertical } from "lucide-react";
+import Pagination from "@/components/table/Pagination";
+import { DropdownMenu } from "@radix-ui/react-dropdown-menu";
+import { DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger, } from "@/components/ui/dropdown-menu";
+import { useRouter } from "next/navigation";
+import { clients } from "@/data/fields";
+import { useState } from "react";
 
-import {
-  Pagination,
-  PaginationContent,
-  PaginationItem,
-  PaginationLink,
-  PaginationNext,
-  PaginationPrevious,
-} from "@/components/ui/pagination";
+export default function Page() {
+  const router = useRouter();
 
-const clients = [
-  {
-    id: 1,
-    location: "New York",
-    clientName: "Client name 1",
-    contactName: "Leslie Alexander",
-    contactEmail: "lesie.alexander@example.com",
-    registeredOn: "05 July 2022",
-    status: "Active",
-  },
-  {
-    id: 2,
-    location: "London",
-    clientName: "Client name 2",
-    contactName: "Ronald Richards",
-    contactEmail: "ronald.richards@example.com",
-    registeredOn: "24 June 2022",
-    status: "Active",
-  },
-  {
-    id: 3,
-    location: "Berlin",
-    clientName: "Client name 3",
-    contactName: "Jane Cooper",
-    contactEmail: "jane.cooper@example.com",
-    registeredOn: "20 June 2022",
-    status: "Active",
-  },
-  {
-    id: 4,
-    location: "Paris",
-    clientName: "Client name 4",
-    contactName: "Robert Fox",
-    contactEmail: "robert.fox@gmail.com",
-    registeredOn: "14 June 2022",
-    status: "Pending",
-  },
-  {
-    id: 5,
-    location: "Toronto",
-    clientName: "Client name 5",
-    contactName: "Jenny Wilson",
-    contactEmail: "jenny.wilson@example.com",
-    registeredOn: "20 May 2022",
-    status: "Active",
-  },
-  {
-    id: 6,
-    location: "Sydney",
-    clientName: "Client name 6",
-    contactName: "Ronald Richards",
-    contactEmail: "ronald.richards@example.com",
-    registeredOn: "10 May 2022",
-    status: "Inactive",
-  },
-  {
-    id: 7,
-    location: "Dubai",
-    clientName: "Client name 7",
-    contactName: "Leslie Alexander",
-    contactEmail: "lesie.alexander@example.com",
-    registeredOn: "20 May 2022",
-    status: "Active",
-  },
-  {
-    id: 8,
-    location: "Tokyo",
-    clientName: "Client name 8",
-    contactName: "Robert Fox",
-    contactEmail: "robert.fox@gmail.com",
-    registeredOn: "14 June 2022",
-    status: "Inactive",
-  },
-  {
-    id: 9,
-    location: "Delhi",
-    clientName: "Client name 9",
-    contactName: "Jenny Wilson",
-    contactEmail: "jenny.wilson@example.com",
-    registeredOn: "20 June 2022",
-    status: "Pending",
-  },
-  {
-    id: 10,
-    location: "Singapore",
-    clientName: "Client name 10",
-    contactName: "Ronald Richards",
-    contactEmail: "ronald.richards@example.com",
-    registeredOn: "10 May 2022",
-    status: "Active",
-  },
-];
+  const CARDS_PER_PAGE = 10;
+  const [dataList, setDataList] = useState(clients);
+  const [page, setPage] = useState(1);
+  const totalPages = Math.ceil(dataList.length / CARDS_PER_PAGE);
+  const startIdx = (page - 1) * CARDS_PER_PAGE;
+  const currentData = dataList.slice(startIdx, startIdx + CARDS_PER_PAGE);
 
-export default function ClientTable() {
+  // // function handleRemove(id: number) {
+  // //   setDataList((prev) => prev.filter((item) => item.id !== id));
+  // //   if (page > 1 && currentData.length === 1) {
+  // //     setPage((prev) => prev - 1); // shift back if page gets empty
+  // //   }
+  // }
+
   return (
-    <Table>
-      <TableHeader>
-        <TableRow>
-          <TableHead className="w-[100px]">S. No.</TableHead>
-          <TableHead>Location</TableHead>
-          <TableHead>Client Name</TableHead>
-          <TableHead>Contact Name</TableHead>
-          <TableHead>Contact Email</TableHead>
-          <TableHead>Registered On</TableHead>
-          <TableHead>Status</TableHead>
-          <TableHead>Actions</TableHead>
-        </TableRow>
-      </TableHeader>
-      <TableBody>
-        {clients.map((client) => (
-          <TableRow key={client.id}>
-            <TableCell className="font-medium">{client.id}</TableCell>
-            <TableCell>{client.location}</TableCell>
-            <TableCell>{client.clientName}</TableCell>
-            <TableCell>{client.contactName}</TableCell>
-            <TableCell>{client.contactEmail}</TableCell>
-            <TableCell>{client.registeredOn}</TableCell>
-            <TableCell>{client.status}</TableCell>
-            <TableCell>
-              <EllipsisVertical className="text-[#A0A4A8]" size={16} />
-            </TableCell>
+    <>
+      <Table>
+        <TableHeader>
+          <TableRow>
+            <TableHead colSpan={8} className="text-xl font-medium p-5">
+              List of All Clients
+            </TableHead>
           </TableRow>
-        ))}
-      </TableBody>
-
-      <TableFooter>
-        <TableRow>
-          <TableCell colSpan={8} className="p-4  bg-white">
-            <Pagination className="justify-end">
-              <PaginationContent>
-                <PaginationItem>
-                  <PaginationPrevious href="#" />
-                </PaginationItem>
-
-                <PaginationItem>
-                  <PaginationLink href="#" isActive>
-                    1
-                  </PaginationLink>
-                </PaginationItem>
-
-                <PaginationItem>
-                  <PaginationLink href="#">2</PaginationLink>
-                </PaginationItem>
-
-                <PaginationItem >
-                  <PaginationLink href="#">3</PaginationLink>
-                </PaginationItem>
-
-                <PaginationItem>
-                  <PaginationNext href="#" />
-                </PaginationItem>
-              </PaginationContent>
-            </Pagination>
-          </TableCell>
-        </TableRow>
-      </TableFooter>
-    </Table>
+          <TableRow className="bg-app-table-header hover:bg-app-table-header">
+            <TableHead className="px-5 text-center">S. No.</TableHead>
+            <TableHead>Location</TableHead>
+            <TableHead>Client Name</TableHead>
+            <TableHead>Contact Name</TableHead>
+            <TableHead>Contact Email</TableHead>
+            <TableHead>Registered On</TableHead>
+            <TableHead>Status</TableHead>
+            <TableHead>Actions</TableHead>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          {currentData.map((client) => (
+            <TableRow key={client.id}>
+              <TableCell className="font-medium px-5 text-center">
+                {client.id}
+              </TableCell>
+              <TableCell>{client.location}</TableCell>
+              <TableCell>{client.clientName}</TableCell>
+              <TableCell>{client.contactName}</TableCell>
+              <TableCell>{client.contactEmail}</TableCell>
+              <TableCell>{client.registeredOn}</TableCell>
+              <TableCell
+                className={`text-sm ${
+                  client.status === "Active"
+                    ? "text-[#10940D]"
+                    : client.status === "Pending"
+                    ? "text-[#F8A80C]"
+                    : "text-[#52575C]"
+                }`}
+              >
+                {client.status}
+              </TableCell>
+              <TableCell>
+                <DropdownMenu>
+                  <DropdownMenuTrigger>
+                    <EllipsisVertical
+                      className="text-[#A0A4A8] cursor-pointer"
+                      size={16}
+                    />
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent className=" py-2 border-0 shadow-[0px_12px_26px_0px_#101E730F]">
+                    <DropdownMenuItem
+                      className=" "
+                      onClick={() => router.push(`/manage-client/edit/`)}
+                    >
+                      Edit
+                    </DropdownMenuItem>
+                    <DropdownMenuItem
+                      onClick={() => router.push(`/reset-password/`)}
+                    >
+                      Reset Password
+                    </DropdownMenuItem>
+                    <DropdownMenuItem>Deactivate</DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              </TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+      <Pagination setPage={setPage} page={page} totalPages={totalPages}/>
+    </>
   );
 }

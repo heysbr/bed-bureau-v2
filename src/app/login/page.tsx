@@ -13,12 +13,22 @@ import { useRouter } from "next/navigation";
 import { generateSchema } from "@/lib/SchemaGenerator";
 import { Button } from "@/components/ui/button";
 import PageTitle from "@/components/layout/PageTittle";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState, AppDispatch } from "@/store/store";
+import { adminLogin } from "@/store/actions/adminAction";
+import toast from "react-hot-toast";
 
 const schema = generateSchema(LoginFields);
 type FormData = z.infer<typeof schema>;
 
 export default function Page() {
   const router = useRouter();
+
+  const dispatch = useDispatch<AppDispatch>();
+  const { isLoader, error, isAdminLoggedIn } = useSelector(
+    (state: RootState) => state.admin
+  );
+
   const {
     register,
     handleSubmit,
@@ -28,19 +38,31 @@ export default function Page() {
     mode: "all",
   });
 
-  function submit(data: FormData) {
-    alert("form submitted successfully...");
-    console.table(data);
-    router.push("/manage-client");
-  }
+  const submit = async (data: FormData) => {
+    try {
+      // Ensure data matches LoginPayload type
+      const loginPayload = {
+        email: String(data.email),
+        password: String(data.password),
+      };
+      const result = await dispatch(adminLogin(loginPayload)).unwrap();
+      toast.success("Login successful!"); // ✅ success toast
+      router.push("/admin/dashboard"); // Redirect to dashboard
+    } catch (err: unknown) {
+      const errorMessage = err instanceof Error ? err.message : "Login failed";
+      toast.error(errorMessage); // ❌ error toast
+    }
+  };
 
   return (
     <div className="relative h-screen bg-app-bg flex md:px-20 md:items-center ">
-      <Image src={Logo} alt="logo" className="absolute top-5 left-5 mg:left-25"  />
+      <Image src={Logo} alt="logo" className="absolute top-5 left md:left-25" />
       <div className="flex-1 hidden md:flex flex-col items-center justify-center">
-        <span className="text-4xl m-5">Welcom to 
-        <br />
-        <span className="font-semibold text-[#684ABC]">Bed Bureau</span></span>
+        <span className="text-4xl m-5">
+          Welcom to
+          <br />
+          <span className="font-semibold text-[#684ABC]">Bed Bureau</span>
+        </span>
         <Image src={BgImage} alt="bg-image" />
       </div>
 
@@ -48,24 +70,20 @@ export default function Page() {
         <PageTitle className="md:hidden" />
         <form
           onSubmit={handleSubmit(submit)}
-          // className="flex flex-col gap-y-10 px-12 bg-app-form-bg p-5 shadow-[#DFE5F0] rounded shadow-[0px_4px_15px_0px_#DFE5F0] md:w-md h-3/5"
           className="flex flex-col bg-white md:p-20 border p-5 space-y-2 md:space-y-6 w-full md:w-125 rounded-lg shadow-[0px_4px_15px_0px_#DFE5F0]"
         >
-          <Heading className="hidden md:block text-2xl font-semibold">Login</Heading>
           {LoginFields.map((field, index) => (
             <FormField
               key={index}
-              name={field.name}
               type={field.type}
               placeholder={field.placeholder}
               label={field.label}
-              register={register}
+              {...register(field.name)}
               error={errors[field.name]?.message}
-              // link={field?.link}
-              forgetPassword={field?.forget_password}
+              forget={field?.forgetPassword}
             />
           ))}
-          <Button variant="appBtn" className="w-full mt-4">
+          <Button type="submit" variant="appBtn" className="w-full mt-4">
             Login
           </Button>
         </form>

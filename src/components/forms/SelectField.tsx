@@ -6,26 +6,23 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Label } from "@radix-ui/react-label";
-import { UseFormRegister } from "react-hook-form";
 import Error from "./Error";
 
-type SelectFieldProps = {
+type SelectFieldProps = React.InputHTMLAttributes<HTMLInputElement> & {
   label?: string;
-  placeholder?: string;
   required?: boolean;
-  name?: string;
   error?: string;
-  register?: UseFormRegister<Record<string, string>>;
 };
 
 export default function SelectField({
   label = "Email address",
-  placeholder = "Enter your email",
   required = false,
-  name = "email",
+  placeholder = "Select an option",
   error,
-  // register,
-}: SelectFieldProps) {
+  name,
+  ...props
+}: // register,
+SelectFieldProps) {
   return (
     <>
       <div className="">
@@ -33,11 +30,12 @@ export default function SelectField({
           {label}
           {required && <span className="text-red-500">*</span>}
         </Label>
-        <Select>
+        <Select name={name}>
           <SelectTrigger className="w-full cursor-pointer">
             <SelectValue placeholder={placeholder} />
           </SelectTrigger>
-          <SelectContent>
+          <SelectContent {...props}>
+
             <SelectItem value="option1">Option 1</SelectItem>
             <SelectItem value="option2">Option 2</SelectItem>
             <SelectItem value="option3">Option 3</SelectItem>
